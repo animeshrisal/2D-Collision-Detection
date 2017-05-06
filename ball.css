@@ -1,0 +1,9 @@
+#myCanvas{
+    border: 5px solid black;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #132035;
+}
+
+#ballContainer{
+    padding: 10px;
+}
