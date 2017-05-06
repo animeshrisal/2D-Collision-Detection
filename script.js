@@ -12,6 +12,8 @@ var ballArray = [];
 
 var ball = {}, gravity = 0.2;
 
+var option = 0;
+
 ball = {
     x: W/2,
     y: 50,
@@ -33,6 +35,14 @@ ball = {
 
 function clearCanvas(){
     ctx.clearRect(0, 0, W, H);
+}
+
+function detect(){
+    option = 0;
+}
+
+function handling(){
+    option = 1;
 }
 
 function update(){
@@ -76,16 +86,21 @@ function update(){
                 dx = otherStuff.x - stuff.x;
                 dy = otherStuff.y - stuff.y;   
                 var distance = Math.sqrt(dx * dx + dy * dy);
-                if(distance < stuff.radius + otherStuff.radius){
-                    var collision_angle = Math.atan2(dy, dx);
-             
-                    /*Get new velocity*/
-                    
-                    stuff.vx -= Math.cos(collision_angle);
-                    stuff.vy -= Math.sin(collision_angle);
-                    otherStuff.vx += Math.cos(collision_angle);
-                    otherStuff.vy += Math.sin(collision_angle);
-                    
+                if(distance <= stuff.radius + otherStuff.radius){
+                    if(option == 0){
+                        stuff.color = "yellow";
+                        otherStuff.color = "yellow";
+                        
+                    }
+                    else if(option == 1){
+                        var collision_angle = Math.atan2(dy, dx);
+                        stuff.vx -= Math.cos(collision_angle);
+                        stuff.vy -= Math.sin(collision_angle);
+                        otherStuff.vx += Math.cos(collision_angle);
+                        otherStuff.vy += Math.sin(collision_angle);
+                    }
+                }else{
+                    stuff.color = "red";
                 }
             }  
         }); 
