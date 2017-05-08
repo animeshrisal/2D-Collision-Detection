@@ -4,6 +4,7 @@ var ctx = canvas.getContext("2d");
 var W = 640;
 var H = 480;
 var counter = 0;
+var addNewBall = 0;
     
 canvas.height = H;
 canvas.width = W;
@@ -17,7 +18,6 @@ var option = 0;
 ball = {
     x: W/2,
     y: 50,
-    
     radius: 15,
     color: "red",
     
@@ -45,11 +45,19 @@ function handling(){
     option = 1;
 }
 
+function addBall(){
+    addNewBall = 1;
+}
+
+function reset(){
+    ballArray = [];
+}
+
 function update(){
-    if(counter == 400){
+    if(addNewBall == 1){
         
         ballArray.push(Object.assign({}, ball));
-        counter = 0;
+        addNewBall = 0;
     }
     
     counter++;
