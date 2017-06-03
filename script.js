@@ -3,7 +3,10 @@ var ctx = canvas.getContext("2d");
             
 var W = 640;
 var H = 480;
-var counter = 0;
+
+var clickX = 5;
+var clickY = 5;
+ 
 var addNewBall = 0;
     
 canvas.height = H;
@@ -15,9 +18,9 @@ var ball = {}, gravity = 0.2;
 
 var option = 0;
 
-ball = {
-    x: W/2,
-    y: 50,
+var ball = {
+    x: clickX,
+    y: clickY,
     radius: 15,
     color: "red",
     
@@ -49,18 +52,30 @@ function addBall(){
     addNewBall = 1;
 }
 
+function ballCoords(event){
+    addNewBall = 2;
+    clickX = event.clientX;
+    clickY = event.clientY;
+}
+
 function reset(){
-    ballArray = [];
+    ballArray = []; 
 }
 
 function update(){
-    if(addNewBall == 1){
-        
+    console.log(clickX, clickY);
+    if(addNewBall == 1){        
         ballArray.push(Object.assign({}, ball));
         addNewBall = 0;
     }
+
     
-    counter++;
+    if(addNewBall == 2){
+        
+        ballArray.push(Object.assign({}, ball, {x: clickX, y:clickY}));
+        addNewBall = 0;
+    }
+
     clearCanvas();
     
     ballArray.forEach(function(stuff, stuffIndex){
