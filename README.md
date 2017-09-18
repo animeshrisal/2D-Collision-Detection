@@ -2,10 +2,6 @@ My Simulation and Modeling project where i do a collision of 2D objects. The pri
 
 I am using HTML5 canvas for this project.
 
-Current status:
--Ball Collides with wall.
--New Balls are created after a certain interval of time
+Demo:
 
-To add:
--Ball to collide with other balls.
--Add gravity and bounce physics (not sure)
+https://codepen.io/tentoasts/pen/LyLyBe
